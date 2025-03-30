@@ -155,8 +155,8 @@ function analise_visitantes_criar_tabelas() {
  */
 function analise_visitantes_verificar_colunas() {
     global $wpdb;
-    $table_name = $wpdb->prefix . 'analise_visitantes';
-    
+        $table_name = $wpdb->prefix . 'analise_visitantes';
+        
     // Verificar se a coluna 'country' existe na tabela principal
     $country_exists = $wpdb->get_var("SHOW COLUMNS FROM $table_name LIKE 'country'");
     
@@ -253,10 +253,10 @@ function analise_visitantes_admin_erro() {
  * Função para adicionar menu no admin (modo de segurança)
  */
 function analise_visitantes_adicionar_menu_seguranca() {
-    add_menu_page(
-        'Análise de Visitantes', 
-        'Análise de Visitantes', 
-        'manage_options', 
+        add_menu_page(
+            'Análise de Visitantes',
+            'Análise de Visitantes',
+            'manage_options',
         'analise-visitantes-seguranca', 
         'analise_visitantes_pagina_seguranca',
         'dashicons-chart-area',
@@ -279,7 +279,7 @@ function analise_visitantes_pagina_seguranca() {
             <h2>Diagnóstico</h2>
             <?php
             global $wpdb;
-            $table_name = $wpdb->prefix . 'analise_visitantes';
+        $table_name = $wpdb->prefix . 'analise_visitantes';
             
             echo '<p>Verificando tabela principal: ';
             if ($wpdb->get_var("SHOW TABLES LIKE '$table_name'") == $table_name) {
