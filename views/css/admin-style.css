@@ -1,0 +1,561 @@
+/* Estilos para dashboard no estilo Statify */
+.statify-style {
+    max-width: 1200px;
+}
+
+.statify-style .nav-tab-wrapper {
+    margin-bottom: 20px;
+}
+
+.statify-style .dashboard-container {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04);
+    padding: 20px;
+    position: relative;
+    min-height: 400px;
+}
+
+.statify-style .dashboard-container.loading:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.7);
+    z-index: 10;
+}
+
+.statify-style .dashboard-container.loading:after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -20px 0 0 -20px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #0073aa;
+    animation: spin 1s linear infinite;
+    z-index: 11;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.period-selection {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-radius: 4px;
+    border: 1px solid #e5e5e5;
+}
+
+.period-selection label {
+    margin-right: 5px;
+    font-weight: 500;
+}
+
+.period-selection select {
+    margin-right: 15px;
+}
+
+#filter-button {
+    margin-left: 10px;
+}
+
+/* Adicionar indicador de carregamento */
+.dashboard-container.loading {
+    position: relative;
+}
+
+.dashboard-container.loading:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255,255,255,0.8);
+    z-index: 10;
+}
+
+.dashboard-container.loading:after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 30px;
+    height: 30px;
+    margin: -15px 0 0 -15px;
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #3498db;
+    border-radius: 50%;
+    z-index: 11;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.statify-style .total-views-container {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.statify-style .total-views-container .big-number {
+    font-size: 48px;
+    font-weight: 700;
+    color: #0073aa;
+    line-height: 1;
+    margin-bottom: 8px;
+}
+
+.statify-style .total-views-container .description {
+    color: #666;
+    font-size: 14px;
+}
+
+.statify-style .chart-container {
+    margin-bottom: 30px;
+    height: 300px;
+}
+
+.statify-style .data-tables-container {
+    margin-top: 30px;
+}
+
+.statify-style .data-table {
+    margin-bottom: 30px;
+}
+
+.statify-style .data-table h3 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+}
+
+.statify-style table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.statify-style table th {
+    text-align: left;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-bottom: 1px solid #e1e1e1;
+    font-weight: 600;
+}
+
+.statify-style table td {
+    padding: 8px 10px;
+    border-bottom: 1px solid #f0f0f0;
+    vertical-align: middle;
+}
+
+.statify-style table tr:hover td {
+    background-color: #f9f9f9;
+}
+
+.statify-style .tab-panel {
+    display: none;
+}
+
+.statify-style .tab-panel.active {
+    display: block;
+}
+
+.statify-info {
+    margin-top: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #eee;
+    border-radius: 3px;
+    padding: 15px;
+    color: #666;
+    font-size: 13px;
+}
+
+.statify-info p {
+    margin: 0 0 10px 0;
+}
+
+.statify-info p:last-child {
+    margin-bottom: 0;
+}
+
+@media screen and (max-width: 782px) {
+    .statify-style .period-selection select {
+        margin-bottom: 10px;
+    }
+    
+    .statify-style .total-views-container .big-number {
+        font-size: 36px;
+    }
+}
+
+/* Estilos para mapa geográfico */
+.analise-visitantes-mapa .map-container {
+    background: #fff;
+    border: 1px solid #e5e5e5;
+    box-shadow: 0 1px 1px rgba(0,0,0,0.04);
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.analise-visitantes-mapa #visitor-map {
+    height: 500px;
+    width: 100%;
+}
+
+.analise-visitantes-mapa .country-code {
+    color: #777;
+    font-size: 0.9em;
+}
+
+.analise-visitantes-mapa .dashboard-row {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.analise-visitantes-mapa .dashboard-cell {
+    flex: 1;
+    background: #fff;
+    border: 1px solid #e5e5e5;
+    box-shadow: 0 1px 1px rgba(0,0,0,0.04);
+    padding: 20px;
+    margin-right: 20px;
+}
+
+.analise-visitantes-mapa .dashboard-cell:last-child {
+    margin-right: 0;
+}
+
+/* Estilos para análise de dispositivos */
+.analise-visitantes-dispositivos .dashboard-row {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.analise-visitantes-dispositivos .dashboard-cell {
+    flex: 1;
+    background: #fff;
+    border: 1px solid #e5e5e5;
+    box-shadow: 0 1px 1px rgba(0,0,0,0.04);
+    padding: 20px;
+    margin-right: 20px;
+}
+
+.analise-visitantes-dispositivos .chart-cell {
+    text-align: center;
+}
+
+.analise-visitantes-dispositivos canvas {
+    max-width: 100%;
+    height: auto !important;
+}
+
+/* Estilos para comparação de períodos */
+.analise-visitantes-comparacao .periodo-selection {
+    background: #fff;
+    border: 1px solid #e5e5e5;
+    box-shadow: 0 1px 1px rgba(0,0,0,0.04);
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.analise-visitantes-comparacao .periodo-selection label {
+    margin-right: 10px;
+}
+
+.analise-visitantes-comparacao .periodo-selection input[type="date"] {
+    margin-right: 20px;
+}
+
+.analise-visitantes-comparacao .periodo-info {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.analise-visitantes-comparacao .periodo-info > div {
+    flex: 1;
+    background: #fff;
+    border: 1px solid #e5e5e5;
+    box-shadow: 0 1px 1px rgba(0,0,0,0.04);
+    padding: 15px;
+    margin-right: 20px;
+    text-align: center;
+}
+
+.analise-visitantes-comparacao .periodo-info > div:last-child {
+    margin-right: 0;
+}
+
+.analise-visitantes-comparacao .periodo-info h3 {
+    margin-top: 0;
+    font-size: 14px;
+}
+
+.analise-visitantes-comparacao .total-visitas {
+    font-size: 16px;
+}
+
+.analise-visitantes-comparacao .percentual {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.analise-visitantes-comparacao .percentual.positivo {
+    color: green;
+}
+
+.analise-visitantes-comparacao .percentual.negativo {
+    color: red;
+}
+
+.analise-visitantes-comparacao .dashboard-row {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.analise-visitantes-comparacao .dashboard-cell {
+    flex: 1;
+    background: #fff;
+    border: 1px solid #e5e5e5;
+    box-shadow: 0 1px 1px rgba(0,0,0,0.04);
+    padding: 20px;
+    margin-right: 20px;
+}
+
+.analise-visitantes-comparacao .full-width {
+    width: 100%;
+    margin-right: 0;
+}
+
+/* Estilos para exportação de dados */
+.analise-visitantes-exportar .periodo-selection,
+.analise-visitantes-exportar .export-info,
+.analise-visitantes-exportar .export-options,
+.analise-visitantes-exportar .scheduled-export,
+.analise-visitantes-exportar .google-sheets-integration {
+    background: #fff;
+    border: 1px solid #e5e5e5;
+    box-shadow: 0 1px 1px rgba(0,0,0,0.04);
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.analise-visitantes-exportar .export-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.analise-visitantes-exportar .export-button {
+    display: flex;
+    align-items: center;
+}
+
+.analise-visitantes-exportar .export-button .dashicons {
+    margin-right: 5px;
+}
+
+.analise-visitantes-exportar .form-row {
+    margin-bottom: 15px;
+}
+
+.analise-visitantes-exportar .form-row label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.analise-visitantes-exportar .radio-label {
+    display: inline-block;
+    margin-right: 15px;
+}
+
+.analise-visitantes-exportar .connected-status {
+    display: flex;
+    align-items: center;
+    background-color: #f0f8ff;
+    padding: 10px;
+    border-radius: 4px;
+}
+
+.analise-visitantes-exportar .connected-status .dashicons {
+    color: green;
+    margin-right: 5px;
+}
+
+.analise-visitantes-exportar .connect-google {
+    display: flex;
+    align-items: center;
+}
+
+.analise-visitantes-exportar .connect-google .dashicons {
+    margin-right: 5px;
+}
+
+.analise-visitantes-exportar .description {
+    display: block;
+    color: #777;
+    margin-top: 5px;
+    font-style: italic;
+}
+
+/* Media queries para responsividade */
+@media screen and (max-width: 768px) {
+    .analise-visitantes-mapa .dashboard-row,
+    .analise-visitantes-dispositivos .dashboard-row,
+    .analise-visitantes-comparacao .periodo-info,
+    .analise-visitantes-comparacao .dashboard-row,
+    .analise-visitantes-exportar .export-buttons {
+        flex-direction: column;
+    }
+    
+    .analise-visitantes-mapa .dashboard-cell,
+    .analise-visitantes-dispositivos .dashboard-cell,
+    .analise-visitantes-comparacao .periodo-info > div,
+    .analise-visitantes-comparacao .dashboard-cell {
+        margin-right: 0;
+        margin-bottom: 20px;
+    }
+}
+
+/* Estilos para análise em tempo real */
+.analise-visitantes-tempo-real .dashboard-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.analise-visitantes-tempo-real .dashboard-cell {
+    flex: 1;
+    min-width: 300px;
+    background: #fff;
+    border: 1px solid #e5e5e5;
+    box-shadow: 0 1px 1px rgba(0,0,0,0.04);
+    padding: 20px;
+}
+
+.analise-visitantes-tempo-real .dashboard-cell.full-width {
+    flex-basis: 100%;
+    width: 100%;
+}
+
+.analise-visitantes-tempo-real .dashboard-cell h2 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+    font-size: 16px;
+    color: #23282d;
+}
+
+.analise-visitantes-tempo-real .contador {
+    text-align: center;
+}
+
+.analise-visitantes-tempo-real .big-number {
+    font-size: 36px;
+    font-weight: 600;
+    color: #0073aa;
+    margin: 10px 0;
+}
+
+.analise-visitantes-tempo-real .auto-update {
+    color: #666;
+    font-size: 12px;
+    margin-top: 10px;
+}
+
+.analise-visitantes-tempo-real .trend {
+    color: #666;
+    font-size: 14px;
+}
+
+.analise-visitantes-tempo-real .trend-up {
+    color: #46b450;
+}
+
+.analise-visitantes-tempo-real .trend-down {
+    color: #dc3232;
+}
+
+.analise-visitantes-tempo-real .dashicons {
+    vertical-align: bottom;
+}
+
+.analise-visitantes-tempo-real .search-filter {
+    margin-bottom: 15px;
+}
+
+.analise-visitantes-tempo-real .live-indicator {
+    display: inline-block;
+    background-color: #dc3232;
+    color: white;
+    padding: 2px 8px;
+    border-radius: 3px;
+    font-size: 12px;
+    font-weight: 600;
+    margin-left: 10px;
+    vertical-align: middle;
+}
+
+.analise-visitantes-tempo-real .live-indicator.pulse {
+    opacity: 0.7;
+}
+
+.analise-visitantes-tempo-real .timestamp {
+    color: #666;
+}
+
+.analise-visitantes-tempo-real .new-activity {
+    animation: highlight 3s;
+}
+
+@keyframes highlight {
+    0% {
+        background-color: #fffbcc;
+    }
+    100% {
+        background-color: transparent;
+    }
+}
+
+.analise-visitantes-tempo-real .toggle-view {
+    float: right;
+    cursor: pointer;
+    color: #0073aa;
+    text-decoration: none;
+    margin-top: -3px;
+}
+
+.analise-visitantes-tempo-real .toggle-view:hover {
+    color: #00a0d2;
+}
+
+@media screen and (max-width: 782px) {
+    .analise-visitantes-tempo-real .dashboard-row {
+        flex-direction: column;
+    }
+    
+    .analise-visitantes-tempo-real .dashboard-cell {
+        margin-bottom: 20px;
+        min-width: auto;
+    }
+}

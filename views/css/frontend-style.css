@@ -1,0 +1,48 @@
+.estatisticas-visitantes {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 20px 0;
+}
+
+.estatisticas-visitantes .usuarios-online,
+.estatisticas-visitantes .total-visitas {
+    padding: 15px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    background-color: #f7f7f7;
+    border-radius: 4px;
+    text-align: center;
+}
+
+.estatisticas-visitantes .count {
+    display: block;
+    font-size: 24px;
+    font-weight: bold;
+    color: #0073aa;
+}
+
+.estatisticas-visitantes .label {
+    display: block;
+    margin-top: 5px;
+    font-size: 14px;
+}
+
+.estatisticas-visitantes .paginas-populares {
+    flex-basis: 100%;
+    margin-top: 20px;
+}
+
+.estatisticas-visitantes .paginas-populares h4 {
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.estatisticas-visitantes .paginas-populares ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.estatisticas-visitantes .paginas-populares li {
+    margin-bottom: 5px;
+}
