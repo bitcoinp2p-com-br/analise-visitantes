@@ -364,6 +364,47 @@ function analise_visitantes_inicializacao() {
  * Inicializar o plugin
  */
 function analise_visitantes_init() {
+    // Ativar o modo de depuração no log se necessário
+    if (!defined('WP_DEBUG_LOG')) {
+        define('WP_DEBUG_LOG', true);
+    }
+    
+    // Verificar estrutura de arquivos
+    $arquivos_necessarios = array(
+        'includes/class-core.php',
+        'includes/class-tracking.php',
+        'includes/class-reports.php',
+        'includes/class-geolocation.php',
+        'includes/class-devices.php',
+        'includes/class-realtime.php',
+        'admin/class-admin.php',
+        'admin/class-settings.php',
+        'admin/class-dashboard.php',
+        'public/class-public.php',
+        'admin/views/dashboard.php',
+        'admin/views/realtime.php',
+        'admin/views/reports.php',
+        'admin/views/map.php',
+        'admin/views/settings.php',
+    );
+    
+    $arquivos_faltando = array();
+    
+    foreach ($arquivos_necessarios as $arquivo) {
+        $caminho_completo = ANALISE_VISITANTES_PATH . $arquivo;
+        if (!file_exists($caminho_completo)) {
+            $arquivos_faltando[] = $arquivo;
+            error_log("Análise de Visitantes: Arquivo necessário não encontrado: {$arquivo}");
+        }
+    }
+    
+    if (!empty($arquivos_faltando)) {
+        error_log("Análise de Visitantes: Arquivos faltando: " . implode(', ', $arquivos_faltando));
+        update_option('analise_visitantes_arquivos_faltando', $arquivos_faltando);
+    } else {
+        delete_option('analise_visitantes_arquivos_faltando');
+    }
+    
     // Carregar arquivos principais
     require_once ANALISE_VISITANTES_PATH . 'includes/class-core.php';
     require_once ANALISE_VISITANTES_PATH . 'includes/class-tracking.php';
@@ -389,6 +430,11 @@ function analise_visitantes_init() {
         $admin = Analise_Visitantes_Admin::get_instance();
         $dashboard = Analise_Visitantes_Dashboard::get_instance();
         $reports = Analise_Visitantes_Reports::get_instance();
+        
+        // Adicionar aviso de arquivos faltando
+        if (get_option('analise_visitantes_arquivos_faltando')) {
+            add_action('admin_notices', 'analise_visitantes_arquivos_faltando_notice');
+        }
     }
     
     // Componentes públicos
@@ -398,4 +444,23 @@ function analise_visitantes_init() {
     $devices = Analise_Visitantes_Devices::get_instance();
     $realtime = Analise_Visitantes_Realtime::get_instance();
     $geo = Analise_Visitantes_Geolocation::get_instance();
+}
+
+/**
+ * Exibe um aviso sobre arquivos faltando
+ */
+function analise_visitantes_arquivos_faltando_notice() {
+    $arquivos_faltando = get_option('analise_visitantes_arquivos_faltando', array());
+    
+    if (!empty($arquivos_faltando)) {
+        echo '<div class="notice notice-error">';
+        echo '<p><strong>Análise de Visitantes:</strong> Alguns arquivos necessários não foram encontrados:</p>';
+        echo '<ul>';
+        foreach ($arquivos_faltando as $arquivo) {
+            echo '<li>' . esc_html($arquivo) . '</li>';
+        }
+        echo '</ul>';
+        echo '<p>Isso pode causar problemas de funcionamento. Por favor, reinstale o plugin.</p>';
+        echo '</div>';
+    }
 }

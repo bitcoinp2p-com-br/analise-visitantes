@@ -8,8 +8,30 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
+// Adicionar informações de depuração
+$debug_info = array();
+$debug_info[] = 'Template dashboard.php carregado com sucesso';
+
+// Armazenar informações de debug para análise
+if (WP_DEBUG) {
+    error_log('Análise de Visitantes - Dashboard: '.implode(', ', $debug_info));
+}
+
 // Obter período selecionado
 $days = isset($_GET['days']) ? intval($_GET['days']) : 30;
+
+// Verificar se os scripts necessários foram carregados
+global $wp_scripts;
+$scripts_necessarios = array('chart-js', 'analise-visitantes-dashboard');
+
+// Importante para depuração
+if (WP_DEBUG) {
+    foreach ($scripts_necessarios as $script) {
+        if (!wp_script_is($script, 'enqueued') && !wp_script_is($script, 'done')) {
+            error_log("Análise de Visitantes - Dashboard: Script {$script} não está carregado.");
+        }
+    }
+}
 ?>
 
 <div class="wrap analise-visitantes-wrap">

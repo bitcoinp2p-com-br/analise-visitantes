@@ -67,16 +67,11 @@ class Analise_Visitantes_Admin {
             30
         );
         
-        // Submenus
-        add_submenu_page(
-            'analise-visitantes',
-            'Dashboard',
-            'Dashboard',
-            'manage_options',
-            'analise-visitantes',
-            array($this, 'render_dashboard_page')
-        );
+        // Não é necessário adicionar o submenu Dashboard, pois o WordPress já cria
+        // automaticamente um submenu com o mesmo nome do menu principal
+        // Remova esta parte para evitar duplicação
         
+        // Submenus
         add_submenu_page(
             'analise-visitantes',
             'Tempo Real',
@@ -111,6 +106,16 @@ class Analise_Visitantes_Admin {
             'manage_options',
             'analise-visitantes-settings',
             array($this, 'render_settings_page')
+        );
+        
+        // Adicionar temporariamente um submenu de diagnóstico
+        add_submenu_page(
+            'analise-visitantes',
+            'Diagnóstico',
+            'Diagnóstico',
+            'manage_options',
+            'analise-visitantes-diagnostico',
+            array($this, 'verificar_permissoes_arquivos')
         );
     }
     
@@ -503,7 +508,16 @@ class Analise_Visitantes_Admin {
      * Renderizar página do dashboard
      */
     public function render_dashboard_page() {
-        require_once ANALISE_VISITANTES_PATH . 'admin/views/dashboard.php';
+        // Verificar se o arquivo existe
+        $template_path = ANALISE_VISITANTES_PATH . 'admin/views/dashboard.php';
+        
+        if (!file_exists($template_path)) {
+            echo '<div class="wrap"><div class="notice notice-error"><p>Erro: Arquivo de template não encontrado em: ' . esc_html($template_path) . '</p></div></div>';
+            return;
+        }
+        
+        // Incluir o template usando require para mostrar erros
+        require_once $template_path;
     }
     
     /**
@@ -532,5 +546,56 @@ class Analise_Visitantes_Admin {
      */
     public function render_settings_page() {
         require_once ANALISE_VISITANTES_PATH . 'admin/views/settings.php';
+    }
+    
+    /**
+     * Função de diagnóstico temporária para verificar problemas com arquivos
+     */
+    public function verificar_permissoes_arquivos() {
+        $diretorio_admin = ANALISE_VISITANTES_PATH . 'admin/views/';
+        $diretorio_views = ANALISE_VISITANTES_PATH . 'views/';
+        
+        echo '<div class="wrap">';
+        echo '<h1>Diagnóstico de Arquivos</h1>';
+        
+        echo '<h2>Arquivos em admin/views/</h2>';
+        $this->listar_arquivos_diretorio($diretorio_admin);
+        
+        echo '<h2>Arquivos em views/ (se existir)</h2>';
+        $this->listar_arquivos_diretorio($diretorio_views);
+        
+        echo '<h2>Caminhos importantes</h2>';
+        echo '<ul>';
+        echo '<li>Diretório do plugin: ' . esc_html(ANALISE_VISITANTES_PATH) . '</li>';
+        echo '<li>URL do plugin: ' . esc_html(ANALISE_VISITANTES_URL) . '</li>';
+        echo '</ul>';
+        
+        echo '</div>';
+    }
+    
+    /**
+     * Função auxiliar para listar arquivos em um diretório
+     */
+    private function listar_arquivos_diretorio($diretorio) {
+        if (!file_exists($diretorio)) {
+            echo '<p>Diretório não encontrado: ' . esc_html($diretorio) . '</p>';
+            return;
+        }
+        
+        $arquivos = glob($diretorio . '*.php');
+        
+        if (empty($arquivos)) {
+            echo '<p>Nenhum arquivo PHP encontrado em: ' . esc_html($diretorio) . '</p>';
+        } else {
+            echo '<ul>';
+            foreach ($arquivos as $arquivo) {
+                echo '<li>';
+                echo 'Arquivo: ' . esc_html(basename($arquivo));
+                echo ' - Existe: ' . (file_exists($arquivo) ? 'Sim' : 'Não');
+                echo ' - Legível: ' . (is_readable($arquivo) ? 'Sim' : 'Não');
+                echo '</li>';
+            }
+            echo '</ul>';
+        }
     }
 } 

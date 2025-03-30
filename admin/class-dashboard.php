@@ -41,9 +41,6 @@ class Analise_Visitantes_Dashboard {
      * Configurar ações e filtros
      */
     private function setup_actions() {
-        // Adicionar menu no admin
-        add_action('admin_menu', array($this, 'add_admin_menu'));
-        
         // Adicionar scripts e estilos
         add_action('admin_enqueue_scripts', array($this, 'enqueue_admin_scripts'));
         
@@ -56,8 +53,12 @@ class Analise_Visitantes_Dashboard {
     
     /**
      * Adicionar menu no painel administrativo
+     * Esta função não é mais chamada, mas mantenho para referência
+     * @deprecated Removido para evitar duplicidade de menus
      */
     public function add_admin_menu() {
+        // Conteúdo comentado para evitar duplicação de menus
+        /*
         // Menu principal
         add_menu_page(
             'Análise de Visitantes', 
@@ -114,6 +115,7 @@ class Analise_Visitantes_Dashboard {
             'analise-visitantes-settings',
             array($this, 'display_settings_page')
         );
+        */
     }
     
     /**
